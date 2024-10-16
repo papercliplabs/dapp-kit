@@ -1,6 +1,6 @@
 {
   "name": "@paperclip-labs/dapp-kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -20,7 +20,8 @@
     }
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "docgen": "typedoc"
   },
   "keywords": [],
   "author": "Paperclip Labs",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/react": "^18.3.11",
     "prettier": "^3.3.3",
+    "typedoc": "^0.26.10",
     "typescript": "^5.6.3"
   },
   "dependencies": {
