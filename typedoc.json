@@ -1,5 +1,5 @@
 {
-    "entryPoints": ["src/format", "src/components"],     // Entry point of your project
+    "entryPoints": ["src/format", "src/identity", "src"],     // Entry point of your project
     "out": "docs",                       // Output directory for documentation
     "excludePrivate": true,              // Exclude private members
     "includeVersion": true,              // Include the version number in the docs

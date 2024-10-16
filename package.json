@@ -14,9 +14,9 @@
       "import": "./dist/format/index.js",
       "require": "./dist/format/index.js"
     },
-    "./components": {
-      "import": "./dist/components/index.js",
-      "require": "./dist/components/index.js"
+    "./identity": {
+      "import": "./dist/identity/index.js",
+      "require": "./dist/identity/index.js"
     }
   },
   "scripts": {
@@ -37,6 +37,8 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "react": "^18.3.1"
+    "@neynar/nodejs-sdk": "^1.62.1",
+    "react": "^18.3.1",
+    "viem": "^2.21.27"
   }
 }
