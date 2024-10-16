@@ -21,14 +21,18 @@
   },
   "scripts": {
     "build": "tsc",
-    "docgen": "typedoc"
+    "docgen": "typedoc",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Paperclip Labs",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.13",
     "@types/react": "^18.3.11",
+    "jest": "^29.7.0",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
     "typedoc": "^0.26.10",
     "typescript": "^5.6.3"
   },

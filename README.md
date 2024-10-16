@@ -19,6 +19,11 @@ Install Dependencies
 pnpm i
 ```
 
+Run Tests
+```bash
+pnpm test
+```
+
 Build
 ```bash
 pnpm build
