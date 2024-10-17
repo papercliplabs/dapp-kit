@@ -14,5 +14,5 @@ export function Name({ config, address, resolvers, ...props }: NameProps) {
 
 async function NameContent({ config, address, resolvers, ...props }: NameProps) {
   const name = await getNameCached({ config, address, resolvers });
-  return <NameRenderer name={name.value} {...props} />;
+  return <NameRenderer name={name?.value} {...props} />;
 }

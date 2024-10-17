@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default styles */
 @layer base {
   :root {
     --dk-color-primary: #1da1f2;
