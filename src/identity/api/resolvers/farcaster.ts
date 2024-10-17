@@ -1,9 +1,9 @@
 import { User as FarcasterUser } from "@neynar/nodejs-sdk/build/neynar-api/v2";
-import { GetIdentityParams } from "../types";
+import { GetIdentityParams, IdentityConfig } from "../types";
 
 export async function getFarcasterUsersForAddress({
-  address,
   config,
+  address,
 }: Omit<GetIdentityParams, "resolvers">): Promise<FarcasterUser[]> {
   const req = await fetch(
     `https://api.neynar.com/v2/farcaster/user/bulk-by-address?addresses=${address}&address_types=verified_address`,
@@ -25,10 +25,10 @@ export async function getFarcasterUsersForAddress({
 }
 
 export async function getFarcasterNameForAddress({
-  address,
   config,
+  address,
 }: Omit<GetIdentityParams, "resolvers">): Promise<string | null> {
-  const users = await getFarcasterUsersForAddress({ address, config });
+  const users = await getFarcasterUsersForAddress({ config, address });
 
   if (users.length === 0) {
     return null;
@@ -38,10 +38,10 @@ export async function getFarcasterNameForAddress({
 }
 
 export async function getFarcasterAvatarForAddress({
-  address,
   config,
+  address,
 }: Omit<GetIdentityParams, "resolvers">): Promise<string | null> {
-  const users = await getFarcasterUsersForAddress({ address, config });
+  const users = await getFarcasterUsersForAddress({ config, address });
 
   if (users.length === 0) {
     return null;

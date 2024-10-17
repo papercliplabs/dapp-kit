@@ -8,7 +8,7 @@ export interface IdentityConfig {
 }
 
 export interface GetIdentityParams {
+  config: IdentityConfig;
   address: Address;
   resolvers: IdentityResolver[];
-  config: IdentityConfig;
 }

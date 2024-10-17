@@ -13,24 +13,19 @@ const resolverForType: Record<
   nns: getNnsName,
 };
 
-/**
- *
- * @param param0
- * @returns
- */
 export async function getName({
+  config,
   address,
   resolvers,
-  config,
-}: GetIdentityParams): Promise<{ name: string; resolver: IdentityResolver | null }> {
+}: GetIdentityParams): Promise<{ value: string; resolver: IdentityResolver | null }> {
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
-    const name = await resolverForType[resolver]({ address, config });
-    if (name) {
-      return { name, resolver };
+    const value = await resolverForType[resolver]({ config, address });
+    if (value) {
+      return { value, resolver };
     }
   }
 
   // If no name was found, return a formatted address
-  return { name: formatAddress({ address }), resolver: null };
+  return { value: formatAddress({ address }), resolver: null };
 }

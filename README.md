@@ -8,8 +8,14 @@ http://papercliplabs.github.io/dapp-kit
 
 ## Installation in another project
 
+Install package
 ```bash
 pnpm install @paperclip-labs/dapp-kit
+```
+
+Import styles in top layout (if you are using components)
+```ts
+import "@paperclip-labs/dapp-kit/styles.css"
 ```
 
 ## Module Development

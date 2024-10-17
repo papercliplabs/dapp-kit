@@ -10,17 +10,22 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
+    "./styles.css": "./dist/styles.css",
     "./format": {
       "import": "./dist/format/index.js",
       "require": "./dist/format/index.js"
     },
     "./identity": {
-      "import": "./dist/identity/index.js",
-      "require": "./dist/identity/index.js"
+      "react-server": "./dist/identity/components/server.js",
+      "default": "./dist/identity/components/client.js"
+    },
+    "./identity/api": {
+      "default": "./dist/identity/api/index.js"
     }
   },
   "scripts": {
-    "build": "tsc",
+    "stylegen": "tailwindcss -i ./src/theme/styles.css -o ./dist/styles.css",
+    "build": "pnpm stylegen && tsc",
     "docgen": "typedoc",
     "test": "jest"
   },
@@ -32,13 +37,22 @@
     "@types/react": "^18.3.11",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.14",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.26.10",
     "typescript": "^5.6.3"
   },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.59.15",
+    "react": "^18.3.1",
+    "viem": "2.x"
+  },
   "dependencies": {
     "@neynar/nodejs-sdk": "^1.62.1",
-    "react": "^18.3.1",
-    "viem": "^2.21.27"
+    "autoprefixer": "^10.4.20",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.9",
+    "postcss": "^8.4.47",
+    "tailwind-merge": "^2.5.4"
   }
 }

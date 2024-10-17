@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --dk-color-primary: #1da1f2; /* Default primary color */
+    --dk-color-secondary: #ffed4a; /* Default secondary color */
+  }
+
+  .dark {
+    --dk-color-primary: #000000;
+    --dk-color-secondary: #ffffff;
+  }
+}

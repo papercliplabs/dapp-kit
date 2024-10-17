@@ -15,7 +15,7 @@ const nnsEnsReverseResolverAbi = [
   },
 ] as const;
 
-export async function getNnsName({ address, config }: Omit<GetIdentityParams, "resolvers">): Promise<string | null> {
+export async function getNnsName({ config, address }: Omit<GetIdentityParams, "resolvers">): Promise<string | null> {
   const publicClient = createPublicClient({
     chain: mainnet,
     transport: http(config.mainnetRpcUrl),
@@ -27,8 +27,6 @@ export async function getNnsName({ address, config }: Omit<GetIdentityParams, "r
     functionName: "resolve",
     args: [address],
   });
-
-  console.log("NNS NAME", name);
 
   if (name == "" || name.endsWith(".eth")) {
     return null;

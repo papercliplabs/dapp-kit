@@ -12,18 +12,18 @@ const resolverForType: Record<
 };
 
 export async function getAvatar({
+  config,
   address,
   resolvers,
-  config,
-}: GetIdentityParams): Promise<{ avatar: string | null; resolver: IdentityResolver | null }> {
+}: GetIdentityParams): Promise<{ value: string | null; resolver: IdentityResolver | null }> {
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
-    const avatar = await resolverForType[resolver]({ address, config });
-    if (avatar) {
-      return { avatar, resolver };
+    const value = await resolverForType[resolver]({ config, address });
+    if (value) {
+      return { value, resolver };
     }
   }
 
   // Null if no avatar was found
-  return { avatar: null, resolver: null };
+  return { value: null, resolver: null };
 }
