@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --dk-color-primary: #1da1f2; /* Default primary color */
-    --dk-color-secondary: #ffed4a; /* Default secondary color */
+    --dk-color-primary: #1da1f2;
+    --dk-color-secondary: #ffed4a;
   }
 
   .dark {

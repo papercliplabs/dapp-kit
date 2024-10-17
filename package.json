@@ -21,6 +21,9 @@
     },
     "./identity/api": {
       "default": "./dist/identity/api/index.js"
+    },
+    "./next": {
+      "default": "./dist/next/index.js"
     }
   },
   "scripts": {
@@ -36,6 +39,7 @@
     "@types/jest": "^29.5.13",
     "@types/react": "^18.3.11",
     "jest": "^29.7.0",
+    "next": "^14.2.15",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.14",
     "ts-jest": "^29.2.5",
@@ -44,6 +48,7 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.59.15",
+    "next": "^14.2.15",
     "react": "^18.3.1",
     "viem": "2.x"
   },
@@ -53,6 +58,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.9",
     "postcss": "^8.4.47",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^2.5.4"
   }
 }

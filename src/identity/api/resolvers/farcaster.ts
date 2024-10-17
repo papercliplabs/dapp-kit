@@ -1,5 +1,5 @@
 import { User as FarcasterUser } from "@neynar/nodejs-sdk/build/neynar-api/v2";
-import { GetIdentityParams, IdentityConfig } from "../types";
+import { GetIdentityParams } from "../types";
 
 export async function getFarcasterUsersForAddress({
   config,

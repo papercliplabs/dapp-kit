@@ -12,13 +12,12 @@ const resolverForType: Record<
 };
 
 export async function getAvatar({
-  config,
-  address,
   resolvers,
+  ...rest
 }: GetIdentityParams): Promise<{ value: string | null; resolver: IdentityResolver | null }> {
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
-    const value = await resolverForType[resolver]({ config, address });
+    const value = await resolverForType[resolver]({ ...rest });
     if (value) {
       return { value, resolver };
     }

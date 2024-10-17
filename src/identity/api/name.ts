@@ -14,13 +14,14 @@ const resolverForType: Record<
 };
 
 export async function getName({
-  config,
-  address,
   resolvers,
+  address,
+  ...rest
 }: GetIdentityParams): Promise<{ value: string; resolver: IdentityResolver | null }> {
+  console.log("CACHE MISS");
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
-    const value = await resolverForType[resolver]({ config, address });
+    const value = await resolverForType[resolver]({ address, ...rest });
     if (value) {
       return { value, resolver };
     }

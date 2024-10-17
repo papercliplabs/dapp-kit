@@ -2,12 +2,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { NameRenderer } from "./NameRenderer";
 import { NameProps } from "./types";
-import { getName } from "../../api";
+import { getNameCached } from "./data";
 
-export function Name({ config, address, resolvers, ...props }: NameProps) {
+interface NameClientProps extends NameProps {
+  apiUrl: string;
+}
+
+export function Name({ config, address, resolvers, apiUrl, ...props }: NameClientProps) {
   const { data: name } = useQuery({
     queryKey: ["name", address],
-    queryFn: () => getName({ config, address, resolvers }),
+    queryFn: async () => getNameCached({ config, address, resolvers }),
   });
 
   return <NameRenderer name={name?.value} {...props} />;
