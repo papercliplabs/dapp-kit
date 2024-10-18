@@ -2,12 +2,13 @@
 import clsx from "clsx";
 import { HTMLAttributes, useState } from "react";
 import { Address } from "viem";
-import { cn } from "../../../theme";
+import { cn } from "../../theme";
+import { GetAvatarReturnType } from "../api/avatar";
 
-interface AvatarRendererProps extends HTMLAttributes<HTMLDivElement> {
+interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   address: Address;
   size: number;
-  imgSrc?: string;
+  avatar?: GetAvatarReturnType;
 }
 
 function getLinearGradientForAddress(address: Address) {
@@ -17,7 +18,7 @@ function getLinearGradientForAddress(address: Address) {
   return `linear-gradient(45deg, #${number.toString(16).padStart(6, "0")}, #FFFFFF)`;
 }
 
-export function AvatarRenderer({ address, size, imgSrc, className, ...props }: AvatarRendererProps) {
+export function Avatar({ address, size, avatar, className, ...props }: AvatarProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -30,9 +31,9 @@ export function AvatarRenderer({ address, size, imgSrc, className, ...props }: A
       }}
       {...props}
     >
-      {imgSrc && (
+      {avatar && avatar.value && (
         <img
-          src={imgSrc}
+          src={avatar.value}
           alt=""
           width={size}
           height={size}

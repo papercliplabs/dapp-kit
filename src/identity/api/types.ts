@@ -11,4 +11,5 @@ export interface GetIdentityParams {
   config: IdentityConfig;
   address: Address;
   resolvers: IdentityResolver[];
+  override?: Record<Address, string>;
 }

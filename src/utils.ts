@@ -6,7 +6,12 @@ export async function safeFetch<T>(url: string, options?: RequestInit): Promise<
 
     // Check if the response status is OK (status code 200-299)
     if (!response.ok) {
-      throw Error(`HTTP error: ${url} - ${response.status}, ${response.statusText}`);
+      if (response.status === 429) {
+        // Rate limited
+        throw Error(`HTTP error: ${url} - Rate limited`);
+      } else {
+        throw Error(`HTTP error: ${url} - ${response.status}, ${response.statusText}`);
+      }
     }
 
     // Parse the response as JSON
@@ -26,14 +31,28 @@ export function safeUnstableCache<T extends Callback>(
   options?: {
     revalidate?: number | false;
     tags?: string[];
-  }
+  },
+  retries?: number // Exponential backoff
 ) {
   return async function (...args: Parameters<T>) {
-    try {
-      return await unstable_cache(cb, keyParts, options)(...args);
-    } catch (e) {
-      console.error(`safeUnstableCache error ${e}`);
-      return null;
+    const maxRetries = retries ?? 5;
+
+    let retryCount = 0;
+    while (retryCount < maxRetries) {
+      try {
+        return await unstable_cache(cb, keyParts, options)(...args);
+      } catch (e) {
+        console.error(`safeUnstableCache error ${e}`);
+      }
+
+      retryCount++;
+      await delay(500 * retryCount + Math.random() * 1000); // Exponential backoff, with staggering retries
     }
+
+    return null;
   } as (...args: Parameters<T>) => Promise<Awaited<ReturnType<T>> | null>;
+}
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

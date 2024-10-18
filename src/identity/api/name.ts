@@ -13,12 +13,21 @@ const resolverForType: Record<
   nns: getNnsName,
 };
 
+export interface GetNameReturnType {
+  value: string;
+  resolver: IdentityResolver | null;
+}
+
 export async function getName({
   resolvers,
   address,
+  override,
   ...rest
-}: GetIdentityParams): Promise<{ value: string; resolver: IdentityResolver | null }> {
-  console.log("CACHE MISS");
+}: GetIdentityParams): Promise<GetNameReturnType> {
+  if (override?.[address]) {
+    return { value: override[address], resolver: null };
+  }
+
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
     const value = await resolverForType[resolver]({ address, ...rest });

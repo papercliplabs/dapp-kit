@@ -1,6 +1,6 @@
 {
   "name": "@paperclip-labs/dapp-kit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -15,15 +15,14 @@
       "import": "./dist/format/index.js",
       "require": "./dist/format/index.js"
     },
-    "./identity": {
-      "react-server": "./dist/identity/components/server.js",
-      "default": "./dist/identity/components/client.js"
-    },
     "./identity/api": {
       "default": "./dist/identity/api/index.js"
     },
-    "./next": {
-      "default": "./dist/next/index.js"
+    "./identity/ui": {
+      "default": "./dist/identity/ui/index.js"
+    },
+    "./transaction": {
+      "default": "./dist/transaction/index.js"
     }
   },
   "scripts": {
@@ -44,13 +43,15 @@
     "tailwindcss": "^3.4.14",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.26.10",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "wagmi": "^2.12.19"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.59.15",
     "next": "^14.2.15",
     "react": "^18.3.1",
-    "viem": "2.x"
+    "viem": "2.x",
+    "wagmi": "^2.12.19"
   },
   "dependencies": {
     "@neynar/nodejs-sdk": "^1.62.1",

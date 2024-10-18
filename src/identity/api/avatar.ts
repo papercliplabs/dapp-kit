@@ -11,13 +11,24 @@ const resolverForType: Record<
   nns: async () => null, // Doesn't implement avatar's
 };
 
+export interface GetAvatarReturnType {
+  value: string | null;
+  resolver: IdentityResolver | null;
+}
+
 export async function getAvatar({
+  address,
   resolvers,
+  override,
   ...rest
-}: GetIdentityParams): Promise<{ value: string | null; resolver: IdentityResolver | null }> {
+}: GetIdentityParams): Promise<GetAvatarReturnType> {
+  if (override?.[address]) {
+    return { value: override[address], resolver: null };
+  }
+
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
-    const value = await resolverForType[resolver]({ ...rest });
+    const value = await resolverForType[resolver]({ address, ...rest });
     if (value) {
       return { value, resolver };
     }
