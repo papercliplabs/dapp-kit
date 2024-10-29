@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default styles */
+@layer base {
+  :root {
+    --dk-background: 0 0% 100%;
+    --dk-foreground: 222.2 47.4% 11.2%;
+
+    --dk-muted: 210 40% 96.1%;
+    --dk-muted-foreground: 215.4 16.3% 46.9%;
+
+    --dk-popover: 0 0% 100%;
+    --dk-popover-foreground: 222.2 47.4% 11.2%;
+
+    --dk-border: 214.3 31.8% 91.4%;
+    --dk-input: 214.3 31.8% 91.4%;
+
+    --dk-card: 0 0% 100%;
+    --dk-card-foreground: 222.2 47.4% 11.2%;
+
+    --dk-primary: 222.2 47.4% 11.2%;
+    --dk-primary-foreground: 210 40% 98%;
+
+    --dk-secondary: 210 40% 96.1%;
+    --dk-secondary-foreground: 222.2 47.4% 11.2%;
+
+    --dk-accent: 210 40% 96.1%;
+    --dk-accent-foreground: 222.2 47.4% 11.2%;
+
+    --dk-destructive: 0 100% 50%;
+    --dk-destructive-foreground: 210 40% 98%;
+
+    --dk-ring: 215 20.2% 65.1%;
+
+    --dk-radius: 0.5rem;
+  }
+
+  .dark {
+    --dk-background: 224 71% 4%;
+    --dk-foreground: 213 31% 91%;
+
+    --dk-muted: 223 47% 11%;
+    --dk-muted-foreground: 215.4 16.3% 56.9%;
+
+    --dk-accent: 216 34% 17%;
+    --dk-accent-foreground: 210 40% 98%;
+
+    --dk-popover: 224 71% 4%;
+    --dk-popover-foreground: 215 20.2% 65.1%;
+
+    --dk-border: 216 34% 17%;
+    --dk-input: 216 34% 17%;
+
+    --dk-card: 224 71% 4%;
+    --dk-card-foreground: 213 31% 91%;
+
+    --dk-primary: 210 40% 98%;
+    --dk-primary-foreground: 222.2 47.4% 1.2%;
+
+    --dk-secondary: 222.2 47.4% 11.2%;
+    --dk-secondary-foreground: 210 40% 98%;
+
+    --dk-destructive: 0 63% 31%;
+    --dk-destructive-foreground: 210 40% 98%;
+
+    --dk-ring: 216 34% 17%;
+
+    --dk-radius: 0.5rem;
+  }
+}
