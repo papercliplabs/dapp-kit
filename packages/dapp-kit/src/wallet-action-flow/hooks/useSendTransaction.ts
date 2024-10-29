@@ -72,6 +72,9 @@ export function useSendTransaction({ chainId, onSuccess }: ActionHookParameters)
         resetSendTransaction();
         break;
       case "success":
+        // Automatically reset
+        resetSendTransaction();
+
         onSuccess({ type: "transaction", receipt: receipt! });
         break;
       case "error-transaction":

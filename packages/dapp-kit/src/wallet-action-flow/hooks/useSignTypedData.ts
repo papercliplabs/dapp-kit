@@ -43,6 +43,9 @@ export function useSignTypedData({ onSuccess }: ActionHookParameters): UseSignMe
         resetSignTypedData();
         break;
       case "success":
+        // Automatically reset
+        resetSignTypedData();
+
         onSuccess({ type: "sign", signature: signedTypedData! });
         break;
       case "idle":

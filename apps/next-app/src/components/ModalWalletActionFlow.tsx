@@ -17,7 +17,7 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 const flowSteps: Step[] = [
   {
-    name: "Sign typed data",
+    name: "Sign",
     type: "sign-typed-data",
     action: createValidatedSignTypedDataParams({
       domain: {
@@ -51,14 +51,24 @@ const flowSteps: Step[] = [
     }),
   },
   {
-    name: "Sign message",
+    name: "Sign",
     type: "sign-message",
     action: {
       message: "Sign this message ",
     },
   },
   {
-    name: "Send signed message as txn data",
+    name: "Approve",
+    type: "send-transaction",
+    action: async (prevActionOutput?: ActionOutput) => ({
+      to: "0x1aa7e3Af810c0E93629F50f771548B03B095CFFA",
+      data: prevActionOutput?.type == "sign" ? prevActionOutput.signature : "0x",
+      value: BigInt(1),
+      gasFallback: BigInt(40000),
+    }),
+  },
+  {
+    name: "Approve",
     type: "send-transaction",
     action: async (prevActionOutput?: ActionOutput) => ({
       to: "0x1aa7e3Af810c0E93629F50f771548B03B095CFFA",
@@ -83,6 +93,7 @@ export default function ModalWalletActionFlow() {
         setOpen(false);
       }}
       onConnectWalletRequest={openConnectModal}
+      autoProgressOnStepChange
     >
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
@@ -94,9 +105,9 @@ export default function ModalWalletActionFlow() {
             This is an example of using the WalletActionFlow inside a modal.
           </div>
           <div className="max-w-sm w-full flex flex-col gap-2 items-center">
+            <WalletActionFlowProgress direction="horizontal" />
             <WalletActionFlowButton className="w-full" />
             <WalletActionFlowErrorMessage />
-            <WalletActionFlowProgress />
           </div>
         </DialogContent>
       </Dialog>

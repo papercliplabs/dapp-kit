@@ -74,13 +74,13 @@ export function useWriteContract({ chainId, onSuccess }: ActionHookParameters): 
         resetWriteContract();
         break;
       case "success":
+        // Automatically reset
+        resetWriteContract();
+
         onSuccess({ type: "transaction", receipt: receipt! });
         break;
       case "error-transaction":
         setError(parseWaitForTransactionReceiptError(waitForTransactionReceiptError));
-
-        // Automatically reset on txn error
-        resetWriteContract();
         break;
       case "idle":
         break;

@@ -61,9 +61,9 @@ export function WalletActionFlow({
 }: WalletActionFlowProps) {
   const [stepNumber, setStepNumber] = useState<number>(0);
   const [prevActionOutput, setPrevActionOutput] = useState<ActionOutput | undefined>(undefined);
-  const [shouldProgress, setShouldProgress] = useState<boolean>(false);
   const { address, chainId: connectedChainId } = useAccount();
   const config = useConfig();
+  const [newStep, setNewStep] = useState<boolean>(false);
 
   const currentStep = useMemo(() => {
     return steps[stepNumber];
@@ -79,13 +79,13 @@ export function WalletActionFlow({
             onCompletion?.(prevActionOutput!);
             return stepNumber;
           } else {
-            setShouldProgress(!!autoProgressOnStepChange);
+            setNewStep(true);
             return stepNumber + 1;
           }
         });
       }
     },
-    [currentStep, setPrevActionOutput, setStepNumber, setShouldProgress, autoProgressOnStepChange]
+    [currentStep, onCompletion, setPrevActionOutput, setStepNumber, setNewStep, autoProgressOnStepChange]
   );
 
   const { sendTransaction, ...sendTransactionData } = useSendTransaction({
@@ -160,7 +160,7 @@ export function WalletActionFlow({
       if (actionRequest == undefined) {
         // Skip to the next step, and trigger next action if auto progressing
         setStepNumber((stepNumber) => (stepNumber == steps.length - 1 ? stepNumber : stepNumber + 1));
-        setShouldProgress(!!autoProgressOnStepChange);
+        setNewStep(true);
       } else {
         switch (currentStep.type) {
           case "send-transaction":
@@ -183,7 +183,7 @@ export function WalletActionFlow({
     actionState,
     prevActionOutput,
     setStepNumber,
-    setShouldProgress,
+    setNewStep,
     currentStep,
     sendTransaction,
     address,
@@ -202,25 +202,24 @@ export function WalletActionFlow({
     setStepNumber(0);
   }, [resetActions, setStepNumber]);
 
-  // Auto progressing on step change
+  // Step transition
   useEffect(() => {
-    if (shouldProgress) {
-      progress();
-      setShouldProgress(false);
+    // Only triggered once per new step
+    if (newStep) {
+      setNewStep(false);
+      resetActions(); // Clear all actions
+      if (autoProgressOnStepChange) {
+        progress(); // Auto progress if configured
+      }
     }
-  }, [stepNumber, progress, shouldProgress, setShouldProgress]);
+  }, [newStep, setNewStep, resetActions, autoProgressOnStepChange, progress]);
 
-  // Reset all actions on step progress
+  // Reset on completion
   useEffect(() => {
-    resetActions();
-  }, [stepNumber, resetActions]);
-
-  // Reset flow on completion
-  useEffect(() => {
-    if (stepNumber == steps.length - 1 && actionState == "success") {
+    if (stepNumber === steps.length - 1 && actionState === "success") {
       resetFlow();
     }
-  }, [stepNumber, actionState]);
+  }, [actionState, stepNumber, resetFlow, steps.length]);
 
   // Reset flow on changing account, or chainId
   useEffect(() => {

@@ -59,10 +59,10 @@ export function parseWriteContractError(error: WriteContractErrorType | null): A
 
   const baseError = error as BaseError;
 
-  baseError.walk((e) => {
-    console.log("WALK", e);
-    return false;
-  });
+  // baseError.walk((e) => {
+  //   console.log("WALK", e);
+  //   return false;
+  // });
 
   if (baseError.walk((e) => e instanceof UserRejectedRequestError || (e as Error)?.message?.includes("User reject"))) {
     shortMessage = "User rejected the request.";
@@ -85,10 +85,10 @@ export function parseSendTransactionError(error: SendTransactionErrorType | null
 
   const baseError = error as BaseError;
 
-  baseError.walk((e) => {
-    console.log("WALK", e);
-    return false;
-  });
+  // baseError.walk((e) => {
+  //   console.log("WALK", e);
+  //   return false;
+  // });
 
   if (baseError.walk((e) => e instanceof UserRejectedRequestError || (e as Error)?.message?.includes("User reject"))) {
     shortMessage = "User rejected the request.";

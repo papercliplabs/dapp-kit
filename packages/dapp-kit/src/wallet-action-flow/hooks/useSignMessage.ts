@@ -43,6 +43,9 @@ export function useSignMessage({ onSuccess }: ActionHookParameters): UseSignMess
         resetSignMessage();
         break;
       case "success":
+        // Automatically reset
+        resetSignMessage();
+
         onSuccess({ type: "sign", signature: signedMessage! });
         break;
       case "idle":
