@@ -1,6 +1,6 @@
 {
   "name": "@paperclip-labs/dapp-kit",
-  "version": "0.0.5",
+  "version": "0.0.19",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -15,14 +15,14 @@
       "import": "./dist/format/index.js",
       "require": "./dist/format/index.js"
     },
-    "./identity/api": {
-      "default": "./dist/identity/api/index.js"
+    "./identity/server": {
+      "default": "./dist/identity/server/index.js"
     },
-    "./identity/ui": {
-      "default": "./dist/identity/ui/index.js"
+    "./identity/client": {
+      "default": "./dist/identity/client/index.js"
     },
-    "./wallet-action-flow": {
-      "default": "./dist/wallet-action-flow/index.js"
+    "./identity": {
+      "default": "./dist/identity/index.js"
     },
     "./ui": {
       "default": "./dist/ui/index.js"
@@ -62,7 +62,7 @@
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.11.9",
+    "framer-motion": "12.0.0-alpha.1",
     "lucide-react": "^0.453.0",
     "next-themes": "^0.3.0",
     "postcss": "^8.4.47",
@@ -70,6 +70,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
-    "tsc-alias": "^1.8.10"
+    "tsc-alias": "^1.8.10",
+    "zod": "^3.23.8"
   }
 }
