@@ -10,13 +10,13 @@ export default function IdentityExample() {
   const [v, setV] = useState<boolean>(false);
 
   const a = useMemo(() => {
-    return v ? address : "0x796307f46b108661600e252A23faA2eE11EE6E23";
+    return v ? address : "0x46a8E86e3195315E438C7d38176992e9CF46a5Dc";
   }, [v, address]);
 
   return (
     <div className="flex gap-2 items-center">
       <button onClick={() => setV((v) => !v)}>Toggle</button>
-      <Avatar address={address ?? zeroAddress} resolvers={["nns", "ens", "farcaster"]} size={60} />
+      <Avatar address={a ?? zeroAddress} resolvers={["nns", "ens", "farcaster"]} size={60} />
       <Name key={a} address={a ?? zeroAddress} resolvers={["nns", "ens", "farcaster"]} className="text-red-500" />
     </div>
   );

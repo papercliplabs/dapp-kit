@@ -1,6 +1,6 @@
 "use client";
 import { GetIdentityParameters } from "@/identity/shared/types";
-import { HTMLAttributes, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { cn } from "@/ui";
 import { useAvatar } from "./useAvatar";
 import clsx from "clsx";
@@ -20,6 +20,11 @@ function getLinearGradientForAddress(address: Address) {
 export function Avatar({ address, resolvers, size, className, ...props }: AvatarProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { data: avatar } = useAvatar({ address, resolvers });
+
+  // Reset if address changes
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [address]);
 
   return (
     <div
@@ -48,6 +53,7 @@ export function Avatar({ address, resolvers, size, className, ...props }: Avatar
             isLoaded ? "dk-opacity-100" : "dk-opacity-0"
           )}
           onLoad={() => setIsLoaded(true)} // Trigger fade-in once the image is fully loaded
+          onError={({ currentTarget }) => currentTarget.remove()} // Remove the image if it fails to load
         />
       )}
     </div>

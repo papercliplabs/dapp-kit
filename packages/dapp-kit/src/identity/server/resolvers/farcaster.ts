@@ -1,4 +1,4 @@
-import { GetIdentityParameters, GetIdentityReturnType } from "@/identity/shared/types";
+import { GetAvatarReturnType, GetIdentityParameters, GetNameReturnType } from "@/identity/shared/types";
 import { User as FarcasterUser } from "@neynar/nodejs-sdk/build/neynar-api/v2";
 import { IdentityApiConfig } from "../types";
 
@@ -28,7 +28,7 @@ export async function getFarcasterUsersForAddress(
 export async function getFarcasterNameForAddress(
   config: IdentityApiConfig,
   { address }: Omit<GetIdentityParameters, "resolvers">
-): Promise<GetIdentityReturnType | null> {
+): Promise<GetNameReturnType | null> {
   const users = await getFarcasterUsersForAddress(config, { address });
 
   if (users.length === 0) {
@@ -41,7 +41,7 @@ export async function getFarcasterNameForAddress(
 export async function getFarcasterAvatarForAddress(
   config: IdentityApiConfig,
   parameters: Omit<GetIdentityParameters, "resolvers">
-): Promise<GetIdentityReturnType | null> {
+): Promise<GetAvatarReturnType> {
   const users = await getFarcasterUsersForAddress(config, parameters);
 
   if (users.length === 0) {

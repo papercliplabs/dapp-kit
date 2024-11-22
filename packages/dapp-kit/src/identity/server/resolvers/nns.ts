@@ -1,5 +1,5 @@
 import { createPublicClient, http } from "viem";
-import { base, mainnet } from "viem/chains";
+import { base } from "viem/chains";
 import { readContract } from "viem/actions";
 import { IdentityApiConfig } from "../types";
 import { GetIdentityParameters } from "@/identity/shared/types";

@@ -2,7 +2,7 @@ import { formatAddress } from "@/format";
 import { getEnsName } from "./resolvers/ens";
 import { getFarcasterNameForAddress } from "./resolvers/farcaster";
 import { getNnsName } from "./resolvers/nns";
-import { GetIdentityParameters, GetIdentityReturnType } from "../shared/types";
+import { GetIdentityParameters, GetNameReturnType } from "../shared/types";
 import { IdentityApiConfig } from "./types";
 
 const resolverForType: Record<
@@ -17,7 +17,7 @@ const resolverForType: Record<
 export async function getName(
   config: IdentityApiConfig,
   { address, resolvers }: GetIdentityParameters
-): Promise<GetIdentityReturnType> {
+): Promise<GetNameReturnType> {
   // Search through all resolvers in order to find the first name
   for (const resolver of resolvers) {
     const value = await resolverForType[resolver](config, { address });

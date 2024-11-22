@@ -1,5 +1,7 @@
 import { z } from "zod";
-import { GetIdentityParametersSchema, GetIdentityReturnTypeSchema } from "./schema";
+import { GetAvatarReturnTypeSchema, GetIdentityParametersSchema, GetNameReturnTypeSchema } from "./schema";
 
 export type GetIdentityParameters = z.infer<typeof GetIdentityParametersSchema>;
-export type GetIdentityReturnType = z.infer<typeof GetIdentityReturnTypeSchema>;
+
+export type GetNameReturnType = z.infer<typeof GetNameReturnTypeSchema>;
+export type GetAvatarReturnType = z.infer<typeof GetAvatarReturnTypeSchema>;

@@ -11,4 +11,5 @@ export const GetIdentityParametersSchema = z.object({
   resolvers: z.array(z.enum(["ens", "farcaster", "nns"])),
 });
 
-export const GetIdentityReturnTypeSchema = z.string();
+export const GetNameReturnTypeSchema = z.string();
+export const GetAvatarReturnTypeSchema = z.string().nullable();

@@ -3,12 +3,12 @@ import { getEnsName as viemGetEnsName, getEnsAvatar as viemGetEnsAvatar } from "
 import { normalize } from "viem/ens";
 import { mainnet } from "viem/chains";
 import { IdentityApiConfig } from "../types";
-import { GetIdentityParameters, GetIdentityReturnType } from "@/identity/shared/types";
+import { GetAvatarReturnType, GetIdentityParameters, GetNameReturnType } from "@/identity/shared/types";
 
 export async function getEnsName(
   config: IdentityApiConfig,
   { address }: Omit<GetIdentityParameters, "resolvers">
-): Promise<GetIdentityReturnType | null> {
+): Promise<GetNameReturnType | null> {
   const publicClient = createPublicClient({
     chain: mainnet,
     transport: http(config.mainnetRpcUrl),
@@ -24,7 +24,7 @@ export async function getEnsName(
 export async function getEnsAvatar(
   config: IdentityApiConfig,
   parameters: Omit<GetIdentityParameters, "resolvers">
-): Promise<GetIdentityReturnType | null> {
+): Promise<GetAvatarReturnType> {
   const publicClient = createPublicClient({
     chain: mainnet,
     transport: http(config.mainnetRpcUrl),
