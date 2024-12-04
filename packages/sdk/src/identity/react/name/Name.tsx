@@ -2,10 +2,11 @@
 import { useName } from "./useName";
 import { cn } from "@/ui";
 import { formatAddress } from "@/format";
-import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Address } from "viem";
+import { HTMLAttributes } from "react";
 
-interface NameProps extends HTMLMotionProps<"div"> {
+interface NameProps extends HTMLAttributes<HTMLDivElement> {
   address: Address;
 }
 
@@ -22,7 +23,7 @@ export function NameRenderer({
   ...props
 }: Omit<NameProps, "resolvers"> & { address: Address; name: string | undefined }) {
   return (
-    <div className="relative">
+    <div className={cn("relative", className)}>
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
           key={name ? "loaded" : "loading"}
@@ -30,7 +31,7 @@ export function NameRenderer({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ type: "spring", duration: 0.3, bounce: 0 }}
-          className={cn("dk-text-ellipsis dk-overflow-hidden dk-whitespace-nowrap", className)}
+          className={cn("dk-text-ellipsis dk-overflow-hidden dk-whitespace-nowrap")}
           {...props}
         >
           {name ?? formatAddress({ address })}

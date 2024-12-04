@@ -1,11 +1,12 @@
-import { whiskClient, WhiskClientType } from "@paperclip-labs/whisk";
+import { CONFIG } from "@/config";
+import { whiskClient, WhiskClientType } from "@paperclip-labs/whisk-client";
 import { InferRequestType } from "hono";
 
 export async function getName(
-  apiUrl: string,
+  apiKey: string,
   params: InferRequestType<WhiskClientType["identity"]["name"]["$post"]>["json"]
 ): Promise<string | null> {
-  const client = whiskClient(apiUrl);
+  const client = whiskClient(CONFIG.whiskServerUrl); // TODO: add apiKey
 
   try {
     const res = await client.identity.name.$post({

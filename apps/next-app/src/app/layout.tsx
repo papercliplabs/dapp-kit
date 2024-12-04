@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Providers from "@/providers";
 
-import "@paperclip-labs/whisk-kit/styles.css";
+import "@paperclip-labs/whisk-sdk/styles.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 

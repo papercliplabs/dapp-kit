@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 export * from "./provider";
 
 export * from "./constants";

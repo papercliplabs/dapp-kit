@@ -1,14 +1,14 @@
 "use client";
 import { getName } from "@/identity/core";
-import { useWhiskKitContext } from "@/provider";
+import { useWhiskSdkContext } from "@/provider";
 import { useQuery } from "@tanstack/react-query";
 import { Address } from "viem";
 
 export function useName({ address }: { address: Address }) {
   const {
-    apiUrl,
+    apiKey,
     config: { identity },
-  } = useWhiskKitContext();
+  } = useWhiskSdkContext();
 
   if (!identity) {
     throw new Error("Identity config is missing");
@@ -19,8 +19,8 @@ export function useName({ address }: { address: Address }) {
 
   return useQuery({
     queryKey: ["name", address, resolvers],
-    queryFn: async () => await getName(apiUrl, { address, resolvers }),
-    initialData: override ? override.name : null,
+    queryFn: async () => await getName(apiKey, { address, resolvers }),
+    placeholderData: override?.name,
     enabled: !override, // Don't even fetch if overriding
   });
 }

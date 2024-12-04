@@ -1,11 +1,12 @@
-import { whiskClient, WhiskClientType } from "@paperclip-labs/whisk";
+import { CONFIG } from "@/config";
+import { whiskClient, WhiskClientType } from "@paperclip-labs/whisk-client";
 import { InferRequestType } from "hono";
 
 export async function getAvatar(
-  apiUrl: string,
+  apiKey: string,
   params: InferRequestType<WhiskClientType["identity"]["avatar"]["$post"]>["json"]
 ): Promise<string | null> {
-  const client = whiskClient(apiUrl);
+  const client = whiskClient(CONFIG.whiskServerUrl);
 
   try {
     const res = await client.identity.avatar.$post({
@@ -19,7 +20,7 @@ export async function getAvatar(
       throw Error(`Bad response: ${res.status}`);
     }
   } catch (error) {
-    console.error("Invalid response data (/identity/avatar):", error, params);
+    console.error("Invalid response (/identity/avatar):", error, params);
     return null;
   }
 }

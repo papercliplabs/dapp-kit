@@ -1,14 +1,20 @@
 {
-  "name": "dapp-kit",
+  "name": "whisk",
   "repository": "TODO",
   "private": true,
   "author": "Paperclip Labs",
   "license": "MIT",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "WHISK_SDK_ENV=development turbo run dev",
     "start": "turbo run start",
-    "release": "turbo run build && pnpm publish -r"
+    "release": "turbo run build && pnpm publish -r",
+    "dev:server": "turbo run dev --filter=@paperclip-labs/whisk-server",
+    "build:server": "pnpm build --filter=@paperclip-labs/whisk-server",
+    "start:server": "pnpm start --filter=@paperclip-labs/whisk-server",
+    "build:sdk": "pnpm start --filter=@paperclip-labs/whisk-sdk",
+    "publish:sdk": "pnpm build:sdk; pnpm publish --access public --filter=@paperclip-labs/whisk-sdk",
+    "dev:next-app": "turbo run dev --filter=@paperclip-labs/next-app"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
