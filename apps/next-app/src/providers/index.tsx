@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import WalletProvider from "./WalletProvider";
 import { State } from "wagmi";
-import DappKitProvider from "./DappKitProvider";
+import WhiskKitProvider from "./WhiskKitProvider";
 
 export default function Providers({ initialWagmiState, children }: { initialWagmiState?: State; children: ReactNode }) {
   return (
     <WalletProvider initialWagmiState={initialWagmiState}>
-      <DappKitProvider>{children}</DappKitProvider>
+      <WhiskKitProvider>{children}</WhiskKitProvider>
     </WalletProvider>
   );
 }
