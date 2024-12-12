@@ -1,0 +1,18 @@
+{
+  "name": "site",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev",
+    "build": "vocs build",
+    "preview": "vocs preview"
+  },
+  "dependencies": {
+    "@paperclip-labs/whisk-sdk": "^0.0.8",
+    "@types/react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vocs": "latest"
+  }
+}

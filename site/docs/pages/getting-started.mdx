@@ -1,0 +1,96 @@
+# Get started [Get started with Whisk SDK in just a few lines of code.]
+
+## Overview
+
+Whisk SDK provides a suite of modular kits for seamless integration with the [Whisk.so](https://whisk.so) blockchain data pipeline. 
+Each kit includes:
+- Customizable React components for rapid development.
+- React Hooks and SDK Core APIs for deeper, programmatic access to blockchain data.
+
+![Whisk Diagram](/how-it-works.png)
+
+## Installation
+
+Install `whisk-sdk` and it's peer dependency `react-query`:
+
+:::code-group
+
+```bash [npm]
+npm i @paperclip-labs/whisk-sdk @tanstack/react-query
+```
+
+```bash [pnpm]
+pnpm i @paperclip-labs/whisk-sdk @tanstack/react-query
+```
+
+```bash [yarn]
+yarn add @paperclip-labs/whisk-sdk @tanstack/react-query
+```
+
+:::
+
+## Configuration
+
+::::steps
+### Import styles at the top of your layout or app
+
+```ts [layout.tsx]
+import "@paperclip-labs/whisk-sdk/styles.css"
+```
+ 
+ 
+### Wrap App in Context Providers
+
+```ts [providers.tsx]
+"use client";
+import { WhiskSdkProvider } from "@paperclip-labs/whisk-sdk";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <QueryClientProvider client={queryClient}>
+        <WhiskSdkProvider
+            config={{
+                // Define configuration for each kit you plan to use. 
+                // See respective Kit docs below for full configs.
+                identity: {
+                    resolvers: ["base", "uni", "nns", "ens", "farcaster"], 
+                },
+            }}
+        >
+            {children}
+        </WhiskSdkProvider>
+    </QueryClientProvider>
+  );
+}
+```
+ 
+### Use the SDK 
+ 
+To use a specific kit, simply import and utilize its components. 
+
+For example, the Identity Kit:
+```ts
+import { Name, Avatar } from "@paperclip-labs/whisk-sdk/identity";
+
+function ExampleComponent() {
+    // This could come from a connected wallet via Wagmi, ethers.js, web3.js, Privy, etc.
+    const address = "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045";
+
+    return (
+        <div className="flex items-center gap-2">
+            <Avatar address={address} size={30} />
+            <Name address={address} />
+        </div>
+    );
+}
+```
+::::
+
+## Customization
+
+You can customize all components via CSS classes, or tailwindCSS using the className prop. 
+
+More docs coming soon.
