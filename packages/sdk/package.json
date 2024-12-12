@@ -1,6 +1,6 @@
 {
   "name": "@paperclip-labs/whisk-sdk",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
