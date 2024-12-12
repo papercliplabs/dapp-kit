@@ -8,13 +8,8 @@
     "build": "turbo run build",
     "dev": "WHISK_SDK_ENV=development turbo run dev",
     "start": "turbo run start",
-    "release": "turbo run build && pnpm publish -r",
-    "dev:server": "turbo run dev --filter=@paperclip-labs/whisk-server",
-    "build:server": "pnpm build --filter=@paperclip-labs/whisk-server",
-    "start:server": "pnpm start --filter=@paperclip-labs/whisk-server",
     "build:sdk": "pnpm start --filter=@paperclip-labs/whisk-sdk",
-    "publish:sdk": "pnpm build:sdk; pnpm publish --access public --filter=@paperclip-labs/whisk-sdk",
-    "dev:next-app": "turbo run dev --filter=@paperclip-labs/next-app"
+    "publish:sdk": "pnpm build:sdk; pnpm publish --access public --filter=@paperclip-labs/whisk-sdk"
   },
   "devDependencies": {
     "prettier": "^3.3.3",

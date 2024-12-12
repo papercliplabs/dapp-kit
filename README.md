@@ -17,7 +17,12 @@ npm install @paperclip-labs/whisk-sdk @tanstack/react-query
 
 ### Configuration
 
-Wrap your React app with the `WhiskSdkProvider` and `QueryClientProvider`:
+Import styles at the top of your layout or app:
+```typescript
+import "@paperclip-labs/whisk-sdk/styles.css"
+```
+
+Wrap your app with the `WhiskSdkProvider` and `QueryClientProvider`:
 ```JSX
 // providers.tsx
 
