@@ -100,8 +100,8 @@ importers:
   packages/sdk:
     dependencies:
       '@paperclip-labs/whisk-client':
-        specifier: ^0.0.0
-        version: 0.0.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
+        specifier: ^0.0.1
+        version: 0.0.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
       '@radix-ui/react-accordion':
         specifier: ^1.2.1
         version: 1.2.1(@types/react-dom@18.3.4(@types/react@18.3.15))(@types/react@18.3.15)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -990,8 +990,8 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@paperclip-labs/whisk-client@0.0.0':
-    resolution: {integrity: sha512-Xdje3DmBaxXgYQQ4EErvRXZumZYT6azAl6YRpVwojkZrM88yxvU4yGCcTJXpjYUARU/dTnpI4u/gdJxm3KGBjQ==}
+  '@paperclip-labs/whisk-client@0.0.1':
+    resolution: {integrity: sha512-OSbLlaoO0fRyNXmwb6PmgqUnT6rCBOQLHyl7/zRWOyeVUak2vE+sJ/v1FHb4+ajAdiuaLJvQpmVCbxYK1n9MEw==}
 
   '@parcel/watcher-android-arm64@2.5.0':
     resolution: {integrity: sha512-qlX4eS28bUcQCdribHkg/herLe+0A9RyYC+mm2PXpncit8z5b3nSqGVzMNR3CmtAOgRutiZ02eIJJgP/b1iEFQ==}
@@ -5941,7 +5941,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@paperclip-labs/whisk-client@0.0.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)':
+  '@paperclip-labs/whisk-client@0.0.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)':
     dependencies:
       '@hono/node-server': 1.13.7(hono@4.6.13)
       '@hono/zod-validator': 0.4.1(hono@4.6.13)(zod@3.24.1)

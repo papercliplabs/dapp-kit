@@ -1,6 +1,6 @@
 {
   "name": "@paperclip-labs/whisk-sdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -51,7 +51,7 @@
     "react": "^18.3.1"
   },
   "dependencies": {
-    "@paperclip-labs/whisk-client": "^0.0.0",
+    "@paperclip-labs/whisk-client": "^0.0.1",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-slot": "^1.1.0",
     "autoprefixer": "^10.4.20",
