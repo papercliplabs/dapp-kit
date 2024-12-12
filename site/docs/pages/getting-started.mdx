@@ -5,26 +5,24 @@
 Whisk SDK provides a suite of modular kits for seamless integration with the [Whisk.so](https://whisk.so) blockchain data pipeline. 
 Each kit includes:
 - Customizable React components for rapid development.
-- React Hooks and SDK Core APIs for deeper, programmatic access to blockchain data.
+- React Hooks and SDK Core APIs for programmatic access to Whisk data.
 
 ![Whisk Diagram](/how-it-works.png)
 
 ## Installation
 
-Install `whisk-sdk` and it's peer dependency `react-query`:
-
 :::code-group
 
 ```bash [npm]
-npm i @paperclip-labs/whisk-sdk @tanstack/react-query
+npm i @paperclip-labs/whisk-sdk
 ```
 
 ```bash [pnpm]
-pnpm i @paperclip-labs/whisk-sdk @tanstack/react-query
+pnpm i @paperclip-labs/whisk-sdk
 ```
 
 ```bash [yarn]
-yarn add @paperclip-labs/whisk-sdk @tanstack/react-query
+yarn add @paperclip-labs/whisk-sdk
 ```
 
 :::
@@ -36,33 +34,29 @@ yarn add @paperclip-labs/whisk-sdk @tanstack/react-query
 
 ```ts [layout.tsx]
 import "@paperclip-labs/whisk-sdk/styles.css"
+// Other style imports below
 ```
  
  
-### Wrap App in Context Providers
+### Wrap App in `WhiskSdkProvider`
 
-```ts [providers.tsx]
+```tsx [providers.tsx] 
 "use client";
 import { WhiskSdkProvider } from "@paperclip-labs/whisk-sdk";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <QueryClientProvider client={queryClient}>
-        <WhiskSdkProvider
-            config={{
-                // Define configuration for each kit you plan to use. 
-                // See respective Kit docs below for full configs.
-                identity: {
-                    resolvers: ["base", "uni", "nns", "ens", "farcaster"], 
-                },
-            }}
-        >
-            {children}
-        </WhiskSdkProvider>
-    </QueryClientProvider>
+    <WhiskSdkProvider
+        config={{
+            // Define configuration for each kit you plan to use. 
+            // See respective Kit docs for full config.
+            identity: {
+                resolvers: ["base", "uni", "nns", "ens", "farcaster"], 
+            },
+        }}
+    >
+        {children}
+    </WhiskSdkProvider>
   );
 }
 ```
@@ -72,7 +66,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 To use a specific kit, simply import and utilize its components. 
 
 For example, the Identity Kit:
-```ts
+```tsx 
 import { Name, Avatar } from "@paperclip-labs/whisk-sdk/identity";
 
 function ExampleComponent() {
@@ -93,4 +87,4 @@ function ExampleComponent() {
 
 You can customize all components via CSS classes, or tailwindCSS using the className prop. 
 
-More docs coming soon.
+More docs on this coming soon.

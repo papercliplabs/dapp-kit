@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build": "turbo run build",
-    "dev": "WHISK_SDK_ENV=development turbo run dev",
+    "dev:docs": "pnpm --filter=docs dev",
+    "dev:vite": "pnpm --filter=vite-react-app dev",
+    "dev:next": "pnpm --filter=next-app dev",
     "start": "turbo run start",
     "build:sdk": "pnpm start --filter=@paperclip-labs/whisk-sdk",
     "publish:sdk": "pnpm build:sdk; pnpm publish --access public --filter=@paperclip-labs/whisk-sdk"

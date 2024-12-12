@@ -1,5 +1,5 @@
 {
-  "name": "site",
+  "name": "docs",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -8,11 +8,17 @@
     "preview": "vocs preview"
   },
   "dependencies": {
-    "@paperclip-labs/whisk-sdk": "^0.0.8",
-    "@types/react": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "@paperclip-labs/whisk-sdk": "workspace:*",
+    "motion": "^11.14.1",
+    "react": "^18",
+    "react-dom": "^18",
     "typescript": "latest",
+    "viem": "2.x",
     "vocs": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "concurrently": "^9.0.1",
+    "tailwindcss": "^3.4.16"
   }
 }

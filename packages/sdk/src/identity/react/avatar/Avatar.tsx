@@ -4,10 +4,12 @@ import { cn } from "@/ui";
 import { useAvatar } from "./useAvatar";
 import clsx from "clsx";
 import { Address } from "viem";
+import { IdentityKitConfig } from "@/provider";
 
-interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
+export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   address: Address;
   size: number;
+  resolvers?: IdentityKitConfig["resolvers"];
 }
 
 function getLinearGradientForAddress(address: Address) {
@@ -17,8 +19,8 @@ function getLinearGradientForAddress(address: Address) {
   return `linear-gradient(45deg, #${number.toString(16).padStart(6, "0")}, #FFFFFF)`;
 }
 
-export function Avatar({ address, size, className, ...props }: AvatarProps) {
-  const { data: avatar } = useAvatar({ address });
+export function Avatar({ address, size, resolvers, className, ...props }: AvatarProps) {
+  const { data: avatar } = useAvatar({ address, resolvers });
 
   return <AvatarRenderer address={address} size={size} className={className} avatar={avatar ?? undefined} {...props} />;
 }

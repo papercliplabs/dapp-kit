@@ -5,13 +5,15 @@ import { formatAddress } from "@/format";
 import { motion, AnimatePresence } from "framer-motion";
 import { Address } from "viem";
 import { HTMLAttributes } from "react";
+import { IdentityKitConfig } from "@/provider";
 
 interface NameProps extends HTMLAttributes<HTMLDivElement> {
   address: Address;
+  resolvers?: IdentityKitConfig["resolvers"];
 }
 
-export function Name({ address, ...props }: NameProps) {
-  const { data: name } = useName({ address });
+export function Name({ address, resolvers, ...props }: NameProps) {
+  const { data: name } = useName({ address, resolvers });
 
   return <NameRenderer address={address} name={name ?? undefined} {...props} />;
 }
