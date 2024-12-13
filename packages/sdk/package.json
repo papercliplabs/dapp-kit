@@ -1,7 +1,12 @@
 {
   "name": "@paperclip-labs/whisk-sdk",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "",
+  "repository": "github:papercliplabs/whisk-sdk",
+  "bugs": {
+    "url": "https://github.com/papercliplabs/whisk-sdk/issues"
+  },
+  "homepage": "https://docs.whisk.so",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
