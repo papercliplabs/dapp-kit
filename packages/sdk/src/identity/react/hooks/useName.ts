@@ -1,6 +1,6 @@
 "use client";
-import { getName } from "@/identity/core";
-import { IdentityKitConfig, useWhiskSdkContext } from "@/provider";
+import { getName } from "../../core";
+import { IdentityKitConfig, useWhiskSdkContext } from "../../../provider";
 import { useQuery } from "@tanstack/react-query";
 import { Address } from "viem";
 import { useMemo } from "react";

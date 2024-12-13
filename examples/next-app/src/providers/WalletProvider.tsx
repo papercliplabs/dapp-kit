@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { State, WagmiProvider } from "wagmi";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { getConfig } from "./wagmiConfig";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ export default function WalletProvider({
     <WagmiProvider config={config} initialState={initialWagmiState}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>{children}</RainbowKitProvider>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </WagmiProvider>
   );

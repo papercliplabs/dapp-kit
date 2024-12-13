@@ -1,11 +1,11 @@
 "use client";
-import { useName } from "./useName";
-import { cn } from "@/ui";
-import { formatAddress } from "@/format";
+import { useName } from "../hooks/useName";
+import { cn } from "../../../ui";
+import { formatAddress } from "../../../format";
 import { motion, AnimatePresence } from "framer-motion";
 import { Address } from "viem";
 import { HTMLAttributes } from "react";
-import { IdentityKitConfig } from "@/provider";
+import { IdentityKitConfig } from "../../../provider";
 
 interface NameProps extends HTMLAttributes<HTMLDivElement> {
   address: Address;

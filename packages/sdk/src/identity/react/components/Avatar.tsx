@@ -1,10 +1,10 @@
 "use client";
 import { HTMLAttributes, useEffect, useState } from "react";
-import { cn } from "@/ui";
-import { useAvatar } from "./useAvatar";
+import { cn } from "../../../ui";
+import { useAvatar } from "../hooks/useAvatar";
 import clsx from "clsx";
 import { Address } from "viem";
-import { IdentityKitConfig } from "@/provider";
+import { IdentityKitConfig } from "../../../provider";
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   address: Address;

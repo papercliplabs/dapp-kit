@@ -1,2 +1,2 @@
-export * from "./name";
-export * from "./avatar";
+export * from "./hooks";
+export * from "./components";

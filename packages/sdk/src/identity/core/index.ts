@@ -1,2 +1,2 @@
-export * from "./name";
-export * from "./avatar";
+// Re-export from whisk-core
+export { getAvatar, getName } from "@paperclip-labs/whisk-core/identity";

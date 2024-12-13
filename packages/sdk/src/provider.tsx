@@ -1,12 +1,11 @@
 "use client";
-import { WhiskClientType } from "@paperclip-labs/whisk-client";
+import type { IdentityResolvers } from "@paperclip-labs/whisk-core/identity";
 import { QueryClient, QueryClientProvider, useQueryClient } from "@tanstack/react-query";
-import { InferRequestType } from "hono";
 import { createContext, ReactNode, useContext, useRef } from "react";
 import { Address } from "viem";
 
 export interface IdentityKitConfig {
-  resolvers: InferRequestType<WhiskClientType["identity"]["avatar"]["$post"]>["json"]["resolvers"];
+  resolvers: IdentityResolvers;
   overrides?: Record<Address, { name: string; avatar: string } | undefined>;
 }
 

@@ -1,7 +1,8 @@
 {
   "name": "@paperclip-labs/whisk-sdk",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -15,6 +16,9 @@
     },
     "./identity": {
       "default": "./dist/identity/index.js"
+    },
+    "./ui": {
+      "default": "./dist/ui/index.js"
     }
   },
   "scripts": {
@@ -36,8 +40,8 @@
     "react": "^18"
   },
   "dependencies": {
+    "@paperclip-labs/whisk-core": "^0.0.1",
     "@tanstack/react-query": ">=5",
-    "@paperclip-labs/whisk-client": "^0.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "12.0.0-alpha.1",
     "hono": "^4.6.12",

@@ -7,11 +7,11 @@ export default function Home() {
   const { address } = useAccount();
 
   return (
-    <div className="flex flex-col w-full gap-8 p-4 items-center">
+    <div className="flex flex-col w-full p-4 items-center">
       <ConnectButton />
 
       {address && (
-        <div className="flex items-center gap-2">
+        <div className="flex gap-2 p-4 items-center">
           <Avatar address={address} size={32} />
           <Name address={address} />
         </div>
