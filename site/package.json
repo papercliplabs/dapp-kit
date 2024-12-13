@@ -8,6 +8,7 @@
     "preview": "vocs preview"
   },
   "dependencies": {
+    "@paperclip-labs/whisk-core": "^0.0.1",
     "@paperclip-labs/whisk-sdk": "workspace:*",
     "motion": "^11.14.1",
     "react": "^18",

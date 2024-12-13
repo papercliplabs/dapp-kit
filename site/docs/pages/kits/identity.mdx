@@ -16,8 +16,8 @@ Identity Kit simplifies the integration of web3 profile pictures and usernames i
             { address: "0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc", resolvers: ["farcaster"]},
             { address: "0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1", resolvers: ["base"]},
             { address: "0xF9E1845cf5E982F4E13F23d75d41Bf795d35Bcf1", resolvers: ["uni"]},
-        ].map(({address, resolvers}) => 
-            <button className="flex gap-2 items-center p-2 border-2 w-fit rounded-lg border-white/10 hover:bg-white/10 transition-colors">
+        ].map(({address, resolvers}, i) => 
+            <button key={i} className="flex gap-2 items-center p-2 border-2 w-fit rounded-lg border-white/10 hover:bg-white/10 transition-colors">
                 <Avatar address={address} size={32} resolvers={resolvers} />
                 <Name address={address} resolvers={resolvers} />
             </button>
@@ -57,19 +57,30 @@ Supported resolvers:
 
 ## Configuration
 
-Before using components or hooks from this kit, set the `IdentityConfig` in the `WhiskSdkProvider`. 
+Before using components or hooks from this kit, set the `IdentityKitConfig` in the `WhiskSdkProvider`. 
 
-```tsx twoslash
-import { Address } from "viem";
+```tsx [providers.tsx] twoslash
+"use client"; 
+import { WhiskSdkProvider } from "@paperclip-labs/whisk-sdk";
+ 
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <WhiskSdkProvider
+        config={{
+            identity: {
+                // Specify resolvers and their order for sequential resolution. // [!code focus]
+                // This will be used as defaults if no resolvers are provided in the component or hook. // [!code focus]
+                resolvers: ["base", "uni", "nns", "ens", "farcaster"],  // [!code focus]
 
-interface IdentityConfiguration {
-    // Specify resolvers and their order for sequential resolution.
-    // This will be used as defaults if no resolvers are provided in the component or hook.
-    resolvers: ("ens" | "farcaster" | "nns" | "uni" | "base")[]; 
-
-    // Optional: Override specific addresses with custom names or avatars.
-    overrides?: Record<Address, { name: string; avatar: string } | undefined>;
-};
+                // Optional: Override specific addresses with custom names or avatars.
+                overrides: {} // [!code focus]
+            },
+        }}
+    >
+        {children}
+    </WhiskSdkProvider>
+  );
+}
 ```
 :::info
 See the [getting started steps](/getting-started#wrap-app-in-whisksdkprovider) if you didn't already setup the `WhiskSdkProvider`.
@@ -87,7 +98,7 @@ React Components are the easiest and recommended way to get up and running with 
     <Name address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"  />
 </div>
 
-```tsx [Code] 
+```tsx [Code] twoslash 
 import { Name } from "@paperclip-labs/whisk-sdk/identity";
 
 <Name address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" />
@@ -102,8 +113,8 @@ import { Name } from "@paperclip-labs/whisk-sdk/identity";
     <Avatar address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" size={80}  />
 </div>
 
-```mdx [Code]
-import { Avartar } from "@paperclip-labs/whisk-sdk/identity";
+```tsx [Code] twoslash
+import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 
 <Avatar address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" size={80} />
 ```
@@ -115,20 +126,20 @@ Hooks allow you to get the data to build your own custom components if the provi
 
 ### useName
 
-```tsx
+```tsx twoslash
 import { useName } from "@paperclip-labs/whisk-sdk/identity";
 
 // Returns a `UseQueryResult` object powered by `react-query`.
-const {data: name } = useName({ address });
+const { data: name, isLoading } = useName({ address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" });
 ```
 
 ### useAvatar
 
-```tsx
+```tsx twoslash
 import { useAvatar } from "@paperclip-labs/whisk-sdk/identity";
 
 // Returns a `UseQueryResult` object powered by `react-query`.
-const { data: avatar } = useAvatar({ address });
+const { data: avatar, isLoading } = useAvatar({ address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" });
 ```
 
 ## Core
@@ -138,19 +149,23 @@ This is useful for server component fetching, or for use outside of React.
 
 ### getName
 
-```tsx
+```tsx twoslash
 import { getName } from "@paperclip-labs/whisk-sdk/identity/core";
 
 // Need to specify resolvers explicitly since this can be used outside of the WhiskSdkProvider.
-const name = await getName("", { address, resolvers })
+const name = await getName("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", resolvers: ["ens", "farcaster"] })
 ```
 
 ### getAvatar
 
-```tsx
+```tsx twoslash
 import { getAvatar } from "@paperclip-labs/whisk-sdk/identity/core";
 
 // Need to specify resolvers explicitly since this can be used outside of the WhiskSdkProvider
-const avatar = await getAvatar("", { address, resolvers })
+const avatar = await getAvatar("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", resolvers: ["ens", "farcaster"] })
 ```
+
+:::info
+If you wan't to use this outside of React, the recommended way is the use the `@paperclip-labs/whisk-core/identity` package directly.
+:::
 

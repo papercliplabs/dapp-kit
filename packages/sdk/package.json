@@ -1,23 +1,26 @@
 {
   "name": "@paperclip-labs/whisk-sdk",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.js",
+      "default": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
     "./identity/core": {
+      "types": "./dist/identity/core/index.d.ts",
       "default": "./dist/identity/core/index.js"
     },
     "./identity": {
+      "types": "./dist/identity/index.d.ts",
       "default": "./dist/identity/index.js"
     },
     "./ui": {
+      "types": "./dist/ui/index.d.ts",
       "default": "./dist/ui/index.js"
     }
   },

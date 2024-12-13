@@ -194,6 +194,9 @@ importers:
 
   site:
     dependencies:
+      '@paperclip-labs/whisk-core':
+        specifier: ^0.0.1
+        version: 0.0.1
       '@paperclip-labs/whisk-sdk':
         specifier: workspace:*
         version: link:../packages/sdk

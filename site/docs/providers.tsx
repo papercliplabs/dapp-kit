@@ -1,8 +1,7 @@
 "use client";
-import type { ReactNode } from "react";
 import { WhiskSdkProvider } from "@paperclip-labs/whisk-sdk";
 
-export default function Providers({ children }: { children: ReactNode }) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WhiskSdkProvider
       config={{
