@@ -98,7 +98,6 @@ React Components are the easiest and recommended way to get up and running with 
 ### Name
 
 :::code-group 
-
 <div data-title="Preview">
     <Name address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"  />
 </div>
@@ -115,6 +114,19 @@ import { Name } from "@paperclip-labs/whisk-sdk/identity";
 | `address` | `Address` | Yes | Address to resolve. |
 | `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 | `className` | `string` | No | Custom CSS class names. |
+
+Example customizing with tailwindCSS:
+:::code-group 
+<div data-title="Preview">
+    <Name address="0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc" className="text-2xl text-blue-200 " />
+</div>
+
+```tsx [Code] twoslash 
+import { Name } from "@paperclip-labs/whisk-sdk/identity";
+
+<Name address="0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc" className="text-2xl text-blue-200" />
+```
+:::
 
 ### Avatar
 
@@ -137,6 +149,20 @@ import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 | `size` | `number` | Yes | Size in pixels. |
 | `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 | `className` | `string` | No | Custom CSS class names. |
+
+Example customizing with tailwindCSS:
+:::code-group
+
+<div data-title="Preview">
+    <Avatar address="0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1" size={48} className="border-2 border-red-500 rounded-[4px]" />
+</div>
+
+```tsx [Code] twoslash
+import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
+
+<Avatar address="0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1" size={48} className="border-2 border-red-500 rounded-[4px]" />
+```
+:::
 
 ## Hooks
 
