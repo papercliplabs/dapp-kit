@@ -1,8 +1,11 @@
 {
   "name": "@paperclip-labs/whisk-sdk",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "",
-  "repository": "github:papercliplabs/whisk-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/papercliplabs/whisk-sdk"
+  },
   "bugs": {
     "url": "https://github.com/papercliplabs/whisk-sdk/issues"
   },
@@ -48,7 +51,7 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@paperclip-labs/whisk-core": "^0.0.1",
+    "@paperclip-labs/whisk-core": "^0.0.2",
     "@tanstack/react-query": ">=5",
     "clsx": "^2.1.1",
     "hono": "^4.6.12",

@@ -13,6 +13,7 @@ import { Button } from 'vocs/components'
             { address: "0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc", resolvers: ["farcaster"]},
             { address: "0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1", resolvers: ["base"]},
             { address: "0xF9E1845cf5E982F4E13F23d75d41Bf795d35Bcf1", resolvers: ["uni"]},
+            { address: "0x7241DDDec3A6aF367882eAF9651b87E1C7549Dff", resolvers: ["lens"]},
         ].map(({address, resolvers}, i) => 
             <button key={i} className="flex gap-2 items-center p-2 border-2 w-fit rounded-lg border-white/10 hover:bg-white/10 transition-colors">
                 <Avatar address={address} size={32} resolvers={resolvers} />  
@@ -32,6 +33,7 @@ const examples = [
     { address: "0x17cd072cBd45031EFc21Da538c783E0ed3b25DCc", resolvers: ["farcaster"]},
     { address: "0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1", resolvers: ["base"]},
     { address: "0xF9E1845cf5E982F4E13F23d75d41Bf795d35Bcf1", resolvers: ["uni"]},
+    { address: "0x7241DDDec3A6aF367882eAF9651b87E1C7549Dff", resolvers: ["lens"]},
 ]
 
 <div className="flex gap-2 max-w-full flex-wrap">
@@ -51,6 +53,7 @@ Supported resolvers:
 - [Farcaster](https://www.farcaster.xyz/)
 - [Uni Names](https://blog.uniswap.org/introducing-uni-eth-your-unique-web3-username)
 - [Basenames](https://www.base.org/names)
+- [Lens](https://www.lens.xyz/)
 
 ## Configuration
 
@@ -67,7 +70,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             identity: { // [!code focus]
                 // Specify resolvers and their order for sequential resolution. // [!code focus]
                 // This will be used as defaults if no resolvers are provided in the component or hook. // [!code focus]
-                resolvers: ["base", "uni", "nns", "ens", "farcaster"],  // [!code focus]
+                resolvers: ["ens", "base", "farcaster", "nns", "uni", "lens"],  // [!code focus]
 
                 // Optional: Override specific addresses with custom names or avatars.
                 overrides: {} // [!code focus]
@@ -212,7 +215,6 @@ If you want to use this in a Node.js app, you should use the [`@paperclip-labs/w
 ```tsx twoslash
 import { getName } from "@paperclip-labs/whisk-sdk/identity/core";
 
-// Need to specify resolvers explicitly since this can be used outside of the WhiskSdkProvider.
 const name = await getName("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", resolvers: ["ens", "farcaster"] })
 ```
 
@@ -227,7 +229,6 @@ const name = await getName("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA
 ```tsx twoslash
 import { getAvatar } from "@paperclip-labs/whisk-sdk/identity/core";
 
-// Need to specify resolvers explicitly since this can be used outside of the WhiskSdkProvider
 const avatar = await getAvatar("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", resolvers: ["ens", "farcaster"] })
 ```
 
@@ -241,5 +242,5 @@ const avatar = await getAvatar("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D
 ### IdentityResolver
 
 ```tsx 
-type IdentityResolver = ("ens" | "nns" | "farcaster" | "uni" | "base");
+type IdentityResolver = ("ens" | "nns" | "farcaster" | "uni" | "base" | "lens");
 ```
