@@ -149,8 +149,8 @@ importers:
   packages/sdk:
     dependencies:
       '@paperclip-labs/whisk-core':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.3
+        version: 0.0.3
       '@tanstack/react-query':
         specifier: '>=5'
         version: 5.62.7(react@18.3.1)
@@ -1317,6 +1317,9 @@ packages:
 
   '@paperclip-labs/whisk-core@0.0.1':
     resolution: {integrity: sha512-bu44JAp0O0cmSFMHqlRKzeH3eDREGBxFOuRgDu7scn8R8dHBtC5sUrqqPdhAH2HLV0d1X9obr1fhqN+2eZsxfw==}
+
+  '@paperclip-labs/whisk-core@0.0.3':
+    resolution: {integrity: sha512-6AXvi5pHf9Sv9xl19T+xwRw1/fdxcTkU6UH+gqDL1eOxDXt1Q6h9XQy1M9Qrl9uIWCPq3HV8kBoBJJuMtehXMw==}
 
   '@parcel/watcher-android-arm64@2.5.0':
     resolution: {integrity: sha512-qlX4eS28bUcQCdribHkg/herLe+0A9RyYC+mm2PXpncit8z5b3nSqGVzMNR3CmtAOgRutiZ02eIJJgP/b1iEFQ==}
@@ -6910,6 +6913,10 @@ snapshots:
   '@nolyfill/is-core-module@1.0.39': {}
 
   '@paperclip-labs/whisk-core@0.0.1':
+    dependencies:
+      hono: 4.6.13
+
+  '@paperclip-labs/whisk-core@0.0.3':
     dependencies:
       hono: 4.6.13
 

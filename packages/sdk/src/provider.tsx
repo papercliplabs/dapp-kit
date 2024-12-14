@@ -6,7 +6,7 @@ import { Address } from "viem";
 
 export interface IdentityKitConfig {
   resolvers: IdentityResolvers; // List of resolvers to use, will process sequentially until one resolves.
-  overrides?: Record<Address, { name: string; avatar: string } | undefined>; // Override for a given address. 
+  overrides?: Record<Address, { name: string; avatar: string } | undefined>; // Override for a given address.
 }
 
 export interface WhiskSdkConfig {
@@ -38,7 +38,16 @@ export function WhiskSdkProvider({ apiKey, config, children }: WhiskSdkProviderP
   } catch {
     if (!queryClientRef.current) {
       // No existing client, so let's make one
-      queryClientRef.current = new QueryClient();
+      queryClientRef.current = new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
+            staleTime: 1000 * 60, // 5 minutes
+          },
+        },
+      });
     }
   }
 
