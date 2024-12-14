@@ -1,15 +1,12 @@
 "use client";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { cn } from "../../../ui";
-import { useAvatar } from "../hooks/useAvatar";
+import { useAvatar, UseAvatarParams } from "../hooks/useAvatar";
 import clsx from "clsx";
 import { Address } from "viem";
-import { IdentityKitConfig } from "../../../provider";
 
-export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
-  address: Address;
+export interface AvatarProps extends UseAvatarParams, HTMLAttributes<HTMLDivElement> {
   size: number;
-  resolvers?: IdentityKitConfig["resolvers"];
 }
 
 function getLinearGradientForAddress(address: Address) {

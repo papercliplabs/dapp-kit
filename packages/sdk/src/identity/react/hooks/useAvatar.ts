@@ -1,11 +1,17 @@
 "use client";
 import { getAvatar } from "../../core";
-import { IdentityKitConfig, useWhiskSdkContext } from "../../../provider";
+import { useWhiskSdkContext } from "../../../provider";
 import { useQuery } from "@tanstack/react-query";
 import { Address } from "viem";
 import { useMemo } from "react";
+import { IdentityResolvers } from "@paperclip-labs/whisk-core/identity";
 
-export function useAvatar({ address, resolvers }: { address: Address; resolvers?: IdentityKitConfig["resolvers"] }) {
+export interface UseAvatarParams {
+  address: Address; // Address to resolve
+  resolvers?: IdentityResolvers; // Override the default resolvers set in the `WhiskSdkProvider` config.
+}
+
+export function useAvatar({ address, resolvers }: UseAvatarParams) {
   const {
     apiKey,
     config: { identity },

@@ -5,8 +5,8 @@ import { createContext, ReactNode, useContext, useRef } from "react";
 import { Address } from "viem";
 
 export interface IdentityKitConfig {
-  resolvers: IdentityResolvers;
-  overrides?: Record<Address, { name: string; avatar: string } | undefined>;
+  resolvers: IdentityResolvers; // List of resolvers to use, will process sequentially until one resolves.
+  overrides?: Record<Address, { name: string; avatar: string } | undefined>; // Override for a given address. 
 }
 
 export interface WhiskSdkConfig {

@@ -1,16 +1,12 @@
 "use client";
-import { useName } from "../hooks/useName";
+import { useName, UseNameParams } from "../hooks/useName";
 import { cn } from "../../../ui";
 import { formatAddress } from "../../../format";
 import { motion, AnimatePresence } from "framer-motion";
 import { Address } from "viem";
 import { HTMLAttributes } from "react";
-import { IdentityKitConfig } from "../../../provider";
 
-interface NameProps extends HTMLAttributes<HTMLDivElement> {
-  address: Address;
-  resolvers?: IdentityKitConfig["resolvers"];
-}
+interface NameProps extends UseNameParams, HTMLAttributes<HTMLDivElement> {}
 
 export function Name({ address, resolvers, ...props }: NameProps) {
   const { data: name } = useName({ address, resolvers });
