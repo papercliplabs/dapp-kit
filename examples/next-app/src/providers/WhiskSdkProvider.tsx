@@ -7,7 +7,7 @@ export default function WhiskSdkProvider({ children }: { children: ReactNode }) 
     <_WhiskSdkProvider
       config={{
         identity: {
-          resolvers: ["base", "uni", "nns", "ens", "farcaster"],
+          resolvers: ["lens", "base", "uni", "nns", "ens", "farcaster"],
         },
       }}
     >
