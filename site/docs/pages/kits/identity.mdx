@@ -1,4 +1,4 @@
-import { Name, Avatar } from "@paperclip-labs/whisk-sdk/identity";
+import { Name, Avatar, Address, AvatarByName } from "@paperclip-labs/whisk-sdk/identity";
 import { Button } from 'vocs/components'
 
 # Identity Kit
@@ -90,7 +90,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | Yes | List of resolvers to use, will process sequentially until one resolves. |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | Yes | List of resolvers to use, will process sequentially until one resolves. |
 | `overrides` | `Record<Address, { name: string; avatar: string }>` | No | Override for a specific addresses with custom names and avatars.  |
 
 :::info
@@ -102,6 +102,8 @@ See the [getting started steps](/getting-started#wrap-app-in-whisksdkprovider) i
 React Components are the easiest and recommended way to get up and running with Identity Kit.
 
 ### Name
+
+The name for an address.
 
 :::code-group 
 <div data-title="Preview">
@@ -118,7 +120,7 @@ import { Name } from "@paperclip-labs/whisk-sdk/identity";
 | Props | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 | `className` | `string` | No | Custom CSS class names. |
 
 Example customizing with tailwindCSS:
@@ -135,6 +137,8 @@ import { Name } from "@paperclip-labs/whisk-sdk/identity";
 :::
 
 ### Avatar
+
+The avatar for an address.
 
 :::code-group
 
@@ -153,7 +157,7 @@ import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
 | `size` | `number` | Yes | Size in pixels. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 | `className` | `string` | No | Custom CSS class names. |
 
 Example customizing with tailwindCSS:
@@ -167,6 +171,81 @@ Example customizing with tailwindCSS:
 import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 
 <Avatar address="0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1" size={48} className="border-2 border-red-500 rounded-[4px]" />
+```
+:::
+
+### Address
+
+The address for a name and resolver, think of this as the reverse of the `Name` component.
+
+:::info
+In cases where there can be multiple addresses for a given name (eg. Farcaster), the first address will be used.
+:::
+
+:::code-group 
+<div data-title="Preview">
+    <Address name="vitalik.eth" resolver="ens" />
+</div>
+
+```tsx [Code] twoslash 
+import { Address } from "@paperclip-labs/whisk-sdk/identity";
+
+<Address name="vitalik.eth" resolver="ens" />
+```
+:::
+
+| Props | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `name` | `string` | Yes | Name to resolve. |
+| `resolver` | [`IdentityResolver`](#identityresolver) | Yes | Resolver the name is using (`ens` for .eth, `base` for .base.eth, `farcaster` for farcaster names, etc.). |
+| `className` | `string` | No | Custom CSS class names. |
+
+Example customizing with tailwindCSS:
+:::code-group 
+<div data-title="Preview">
+    <Address name="vitalik.eth" resolver="ens" className="text-sm text-red-200" />
+</div>
+
+```tsx [Code] twoslash 
+import { Address } from "@paperclip-labs/whisk-sdk/identity";
+
+<Address name="vitalik.eth" resolver="ens" className="text-sm text-red-200" />
+```
+:::
+
+### AvatarByName
+
+The Avatar for a name and resolver.
+
+:::code-group 
+<div data-title="Preview">
+    <AvatarByName name="stani" size={32} resolver="lens" />
+</div>
+
+```tsx [Code] twoslash 
+import { AvatarByName } from "@paperclip-labs/whisk-sdk/identity";
+
+<AvatarByName name="stani" size={32} resolver="lens" />
+```
+:::
+
+| Props | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `name` | `string` | Yes | Name to resolve. |
+| `size` | `number` | Yes | Size in pixels. |
+| `resolver` | [`IdentityResolver`](#identityresolver) | Yes | Resolver the name is using (`ens` for .eth, `base` for .base.eth, `farcaster` for farcaster names, etc.). |
+| `className` | `string` | No | Custom CSS class names. |
+
+Example customizing with tailwindCSS:
+:::code-group 
+<div data-title="Preview">
+    <AvatarByName name="stani" size={32} resolver="lens" className="hover:scale-125 transition-transform rounded-md" />
+</div>
+
+```tsx [Code] twoslash 
+import { AvatarByName } from "@paperclip-labs/whisk-sdk/identity";
+
+<AvatarByName name="stani" size={32} resolver="lens" className="hover:scale-125 transition-transform rounded-md" />
 ```
 :::
 
@@ -187,7 +266,7 @@ const { data: name, isLoading } = useName({ address: "0xd8dA6BF26964aF9D7eEd9e03
 | Props | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 
 ### useAvatar
 
@@ -200,7 +279,36 @@ const { data: avatar, isLoading } = useAvatar({ address: "0xd8dA6BF26964aF9D7eEd
 | Props | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+
+### useAddress
+
+```tsx twoslash
+import { useAddress } from "@paperclip-labs/whisk-sdk/identity";
+
+const { data: address, isLoading } = useAddress({ name: "stani", resolver: "lens" });
+```
+
+| Props | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `name` | `string` | Yes | Name to resolve. |
+| `size` | `number` | Yes | Size in pixels. |
+| `resolver` | [`IdentityResolver`](#identityresolver) | Yes | Resolver the name is using (`ens` for .eth, `base` for .base.eth, `farcaster` for farcaster names, etc.). |
+
+### useAvatarByName
+
+
+```tsx twoslash
+import { useAvatarByName } from "@paperclip-labs/whisk-sdk/identity";
+
+const { data: avatar, isLoading } = useAvatarByName({ name: "stani", resolver: "lens" });
+```
+
+| Props | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `name` | `string` | Yes | Name to resolve. |
+| `size` | `number` | Yes | Size in pixels. |
+| `resolver` | [`IdentityResolver`](#identityresolver) | Yes | Resolver the name is using (`ens` for .eth, `base` for .base.eth, `farcaster` for farcaster names, etc.). |
 
 ## Core
 
@@ -222,7 +330,7 @@ const name = await getName("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA
 | Params | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `apiKey` | `string` | Yes | Whisk API key, can be empty string for now. |
-| `params` | `{address: Address, resolvers?: IdentityResolvers}` | Yes | Same params as [`useName`](#usename). |
+| `params` | `{address: Address, resolvers?: IdentityResolver[]}` | Yes | Same params as [`useName`](#usename). |
 
 
 ### getAvatar
@@ -236,12 +344,40 @@ const avatar = await getAvatar("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D
 | Params | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `apiKey` | `string` | Yes | Whisk API key, can be empty string for now. |
-| `params` | `{address: Address, resolvers?: IdentityResolvers}` | Yes | Same params as [`useAvatar`](#useavatar). |
+| `params` | `{address: Address, resolvers?: IdentityResolver[]}` | Yes | Same params as [`useAvatar`](#useavatar). |
+
+### getAddress
+
+```tsx twoslash
+import { getAddress } from "@paperclip-labs/whisk-sdk/identity/core";
+
+const address = await getAddress("", { name: "stani", resolver: "lens" })
+```
+
+| Params | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `apiKey` | `string` | Yes | Whisk API key, can be empty string for now. |
+| `params` | `{name: string, resolver: IdentityResolver}` | Yes | Same params as [`useAddress`](#useAddress). |
+
+
+### getAvatarByName
+
+```tsx twoslash
+import { getAvatarByName } from "@paperclip-labs/whisk-sdk/identity/core";
+
+const avatar = await getAvatarByName("", { name: "stani", resolver: "lens" })
+```
+
+| Params | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `apiKey` | `string` | Yes | Whisk API key, can be empty string for now. |
+| `params` | `{name: string, resolver: IdentityResolver}` | Yes | Same params as [`useAvatarByName`](#useAvatarByName). |
+
 
 ## Types
 
-### IdentityResolvers
+### IdentityResolver
 
 ```tsx 
-type IdentityResolvers = ("ens" | "nns" | "farcaster" | "uni" | "base", "lens", "world")[];
+type IdentityResolver = ("ens" | "nns" | "farcaster" | "uni" | "base", "lens", "world");
 ```
