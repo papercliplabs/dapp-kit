@@ -1,23 +1,33 @@
 import { defineConfig } from "vocs";
-import { ModuleKind, ModuleResolutionKind, ScriptTarget} from 'typescript'
+import { ModuleKind, ModuleResolutionKind, ScriptTarget } from "typescript";
 
 export default defineConfig({
-    vite: {
-        ssr: {
-            noExternal: ["@paperclip-labs/whisk-sdk", "@paperclip-labs/whisk-core"]
-        }
+  vite: {
+    ssr: {
+      noExternal: ["@paperclip-labs/whisk-sdk", "@paperclip-labs/whisk-core"],
     },
-    twoslash: {
-        compilerOptions: {
-            allowUmdGlobalAccess: true,
-            esModuleInterop: true,
-            target: ScriptTarget.ES2022,
-            module: ModuleKind.ES2022,
-            moduleResolution: ModuleResolutionKind.Bundler
-        },
+  },
+  twoslash: {
+    compilerOptions: {
+      allowUmdGlobalAccess: true,
+      esModuleInterop: true,
+      target: ScriptTarget.ES2022,
+      module: ModuleKind.ES2022,
+      moduleResolution: ModuleResolutionKind.Bundler,
     },
+  },
+  baseUrl: "https://docs.whisk.so/",
   title: "Whisk SDK",
-  description: "TESTING",
+  description: "Simplify dApp development with modular kits for Whisk's blockchain data pipelines.",
+  logoUrl: {
+    light: "/logo-light.svg",
+    dark: "/logo-dark.svg",
+  },
+  iconUrl: {
+    light: "/icon-light.png",
+    dark: "/icon-dark.png",
+  },
+  ogImageUrl: "https://vocs.dev/api/og?logo=%logo&title=%title&description=%description",
   sidebar: [
     {
       text: "Getting Started",
@@ -32,5 +42,31 @@ export default defineConfig({
         },
       ],
     },
+  ],
+  socials: [
+    {
+      icon: "github",
+      link: "https://github.com/papercliplabs/whisk-sdk",
+    },
+    {
+      icon: "x",
+      link: "https://x.com/PaperclipLabs",
+    },
+    {
+      icon: "warpcast",
+      link: "https://warpcast.com/papercliplabs",
+    },
+  ],
+  topNav: [
+    { text: "Docs", link: "/getting-started", match: "/docs" },
+    // {
+    //   text: "version",
+    //   items: [
+    //     {
+    //       text: "Changelog",
+    //       link: "https://github.com/wevm/vocs/blob/main/src/CHANGELOG.md",
+    //     },
+    //   ],
+    // },
   ],
 });
