@@ -1,9 +1,7 @@
 import { Name, Avatar } from "@paperclip-labs/whisk-sdk/identity";
 import { Button } from 'vocs/components'
 
-# Identity Kit
-
-Identity Kit simplifies the integration of web3 profile pictures and usernames into your application.
+# Identity Kit [Seamlessly integrate web3 avatars and usernames into your app.]
 
 :::code-group 
 
@@ -84,7 +82,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | Yes | List of resolvers to use, will process sequentially until one resolves. |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | Yes | List of resolvers to use, will process sequentially until one resolves. |
 | `overrides` | `Record<Address, { name: string; avatar: string }>` | No | Override for a specific addresses with custom names and avatars.  |
 
 :::info
@@ -96,6 +94,8 @@ See the [getting started steps](/getting-started#wrap-app-in-whisksdkprovider) i
 React Components are the easiest and recommended way to get up and running with Identity Kit.
 
 ### Name
+
+The name for an address.
 
 :::code-group 
 <div data-title="Preview">
@@ -112,7 +112,7 @@ import { Name } from "@paperclip-labs/whisk-sdk/identity";
 | Props | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 | `className` | `string` | No | Custom CSS class names. |
 
 Example customizing with tailwindCSS:
@@ -129,6 +129,8 @@ import { Name } from "@paperclip-labs/whisk-sdk/identity";
 :::
 
 ### Avatar
+
+The avatar for an address.
 
 :::code-group
 
@@ -147,7 +149,7 @@ import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
 | `size` | `number` | Yes | Size in pixels. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 | `className` | `string` | No | Custom CSS class names. |
 
 Example customizing with tailwindCSS:
@@ -168,33 +170,33 @@ import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 
 Hooks allow you to get the data to build your own custom components if the provided components don't fit your needs.
 
+They use `useQuery` from [Tanstack Query](https://tanstack.com/query/latest) under the hood, and return a `UseQueryResult` object.
+
 ### useName
 
 ```tsx twoslash
 import { useName } from "@paperclip-labs/whisk-sdk/identity";
 
-// Returns a `UseQueryResult` object powered by `react-query`.
 const { data: name, isLoading } = useName({ address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" });
 ```
 
 | Props | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 
 ### useAvatar
 
 ```tsx twoslash
 import { useAvatar } from "@paperclip-labs/whisk-sdk/identity";
 
-// Returns a `UseQueryResult` object powered by `react-query`.
 const { data: avatar, isLoading } = useAvatar({ address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" });
 ```
 
 | Props | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `address` | `Address` | Yes | Address to resolve. |
-| `resolvers` | [`IdentityResolvers`](#identityresolvers) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
+| `resolvers` | [`IdentityResolver[]`](#identityresolver) | No | Override the default resolvers set in the [`WhiskSdkProvider` config](#configuration). |
 
 ## Core
 
@@ -202,7 +204,7 @@ If you need direct data access you can use to SDK core.
 This is useful for server component fetching, or for use outside of React.
 
 :::info
-If you wan't to use this outside of React, the recommended way is the use the `@paperclip-labs/whisk-core` package directly.
+If you want to use this in a Node.js app, you should use the [`@paperclip-labs/whisk-core`](https://www.npmjs.com/package/@paperclip-labs/whisk-core) package directly, which has these exact same methods (`whisk-sdk` just re-exports them).
 :::
 
 ### getName
@@ -216,8 +218,8 @@ const name = await getName("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA
 
 | Params | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `apiKey` | `string` | Yes | API key for Whisk SDK, can be empty string. |
-| `params` | `{address: Address, resolvers?: IdentityResolvers}` | Yes | Same params as [`useName`](#usename). |
+| `apiKey` | `string` | Yes | Whisk API key, can be empty string for now. |
+| `params` | `{address: Address, resolvers?: IdentityResolver[]}` | Yes | Same params as [`useName`](#usename). |
 
 
 ### getAvatar
@@ -231,13 +233,13 @@ const avatar = await getAvatar("", { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D
 
 | Params | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `apiKey` | `string` | Yes | API key for Whisk SDK, can be empty string. |
-| `params` | `{address: Address, resolvers?: IdentityResolvers}` | Yes | Same params as [`useAvatar`](#useavatar). |
+| `apiKey` | `string` | Yes | Whisk API key, can be empty string for now. |
+| `params` | `{address: Address, resolvers?: IdentityResolver[]}` | Yes | Same params as [`useAvatar`](#useavatar). |
 
 ## Types
 
-### IdentityResolvers
+### IdentityResolver
 
 ```tsx 
-type IdentityResolvers = ("ens" | "nns" | "farcaster" | "uni" | "base")[];
+type IdentityResolver = ("ens" | "nns" | "farcaster" | "uni" | "base");
 ```
