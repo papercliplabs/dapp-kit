@@ -1,5 +1,5 @@
 "use client";
-import { Name, Avatar } from "@paperclip-labs/whisk-sdk/identity";
+import { Avatar } from "@paperclip-labs/whisk-sdk/identity";
 import { getAddress } from "viem";
 
 export default function Home() {
