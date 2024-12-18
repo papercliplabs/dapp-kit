@@ -9,9 +9,11 @@
     "dev:vite": "bun run --filter=vite-react-app dev",
     "dev:next": "bun run --filter=next-app dev",
     "build:sdk": "bun run --filter=@paperclip-labs/whisk-sdk build",
-    "publish:sdk": "bun build:sdk; cd packages/sdk && bun publish --access public"
+    "publish:sdk": "bun build:sdk; cd packages/sdk && bun publish --access public",
+    "preinstall": "npx only-allow bun"
   },
   "devDependencies": {
+    "only-allow": "^1.2.1",
     "prettier": "^3.3.3"
   },
   "workspaces": [
